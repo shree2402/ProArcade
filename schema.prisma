@@ -1,0 +1,84 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TaskPreferenceType {
+  FAVORITE
+  PRODUCTIVE
+}
+
+enum GameSessionStatus {
+  ACTIVE
+  LOCKED_BY_LADDER
+  LOCKED_BY_SNAKE
+}
+
+enum AssignedTaskStatus {
+  PENDING
+  VERIFIED
+}
+
+model User {
+  id              String           @id @default(cuid())
+  email           String           @unique
+  password        String
+  createdAt       DateTime         @default(now())
+  taskPreferences TaskPreference[]
+  gameSessions    GameSession[]
+  mediaGallery    MediaGallery[]
+
+  @@index([createdAt])
+}
+
+model TaskPreference {
+  id              String             @id @default(cuid())
+  userId          String
+  type            TaskPreferenceType
+  name            String
+  durationMinutes Int
+  user            User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, type])
+}
+
+model GameSession {
+  id            String            @id @default(cuid())
+  userId        String
+  status        GameSessionStatus @default(ACTIVE)
+  currentTile   Int               @default(1)
+  createdAt     DateTime          @default(now())
+  user          User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  assignedTasks AssignedTask[]
+
+  @@index([userId, status])
+  @@index([createdAt])
+}
+
+model AssignedTask {
+  id            String             @id @default(cuid())
+  gameSessionId String
+  taskName      String
+  durationMinutes Int
+  status        AssignedTaskStatus @default(PENDING)
+  createdAt     DateTime           @default(now())
+  gameSession   GameSession        @relation(fields: [gameSessionId], references: [id], onDelete: Cascade)
+
+  @@index([gameSessionId, status])
+  @@index([createdAt])
+}
+
+model MediaGallery {
+  id         String   @id @default(cuid())
+  userId     String
+  taskName   String
+  s3Url      String
+  uploadedAt DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, uploadedAt])
+}

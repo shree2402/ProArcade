@@ -1,0 +1,20 @@
+{
+  "name": "productivity-arcade",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace backend & npm run dev --workspace frontend",
+    "typecheck": "npm run typecheck --workspace backend && npm run typecheck --workspace frontend",
+    "prisma:generate": "prisma generate --schema schema.prisma",
+    "prisma:migrate": "prisma migrate dev --schema schema.prisma",
+    "prisma:studio": "prisma studio --schema schema.prisma"
+  },
+  "devDependencies": {
+    "prisma": "^5.22.0",
+    "typescript": "^5.6.3"
+  }
+}
