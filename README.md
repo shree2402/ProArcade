@@ -271,7 +271,6 @@ productivity-arcade/
 ├── backend/
 ├── frontend/
 ├── docs/
-├── screenshots/
 ├── deployment/
 ├── architecture/
 ├── migrations/
