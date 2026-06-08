@@ -2,7 +2,7 @@
 
 > AI-powered gamified productivity platform that turns procrastination into a Snakes & Ladders game loop.
 
-![Productivity Arcade Banner]
+
 
 ## Overview
 
