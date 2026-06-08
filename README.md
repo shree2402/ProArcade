@@ -89,24 +89,6 @@ More detail: [System Architecture](./docs/ARCHITECTURE.md)
 - Amazon Bedrock Runtime
 - Anthropic Claude 3.5 Sonnet
 
-## Screenshots
-
-Add production screenshots to the `screenshots/` folder using these names:
-
-| Screen | File | Description |
-| --- | --- | --- |
-| Login Page | `screenshots/login.png` | Glassmorphic login page with arcade styling |
-| Register Page | `screenshots/register.png` | Secure account creation flow |
-| Onboarding | `screenshots/onboarding.png` | Task profiler and avatar selector |
-| Dashboard | `screenshots/dashboard.png` | Interactive Snakes & Ladders board |
-| Dice Roll | `screenshots/dice-roll.png` | Animated dice and avatar movement |
-| Task Assignment | `screenshots/task-assignment.png` | Locked task panel with countdown |
-| AI Verification | `screenshots/ai-verification.png` | Proof upload and verification state |
-| Gallery | `screenshots/gallery.png` | Verified proof archive |
-| Victory Screen | `screenshots/victory.png` | Cinematic proof montage |
-
-Full screenshot guide: [Screenshot Showcase](./docs/SCREENSHOTS.md)
-
 ## Demo
 
 Recommended demo flow:
