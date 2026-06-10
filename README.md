@@ -49,7 +49,7 @@ flowchart TD
   Backend --> Prisma["Prisma ORM"]
   Prisma --> Postgres["PostgreSQL"]
   Backend --> S3["AWS S3 or Local Storage"]
-  Backend --> Bedrock["Amazon Bedrock Claude 3.5 Sonnet or Local Verification"]
+  Backend --> Bedrock["Amazon Bedrock Claude 4.6 Sonnet or Local Verification"]
   S3 --> Gallery["Media Gallery"]
   Bedrock --> Game["Game Unlock Logic"]
 ```
@@ -87,7 +87,7 @@ More detail: [System Architecture](./docs/ARCHITECTURE.md)
 - AWS S3
 - AWS SDK v3
 - Amazon Bedrock Runtime
-- Anthropic Claude 3.5 Sonnet
+- Anthropic Claude 4.6 Sonnet
 
 ## Demo
 
@@ -217,7 +217,7 @@ JWT_ACCESS_SECRET=replace-with-a-long-random-secret
 JWT_REFRESH_SECRET=replace-with-another-long-random-secret
 AWS_REGION=us-east-1
 AWS_S3_BUCKET=your-s3-bucket-name
-BEDROCK_MODEL_ID=anthropic.claude-3-5-sonnet-20240620-v1:0
+BEDROCK_MODEL_ID=anthropic.claude-4-6-sonnet-20240620-v1:0
 STORAGE_DRIVER=local
 VERIFICATION_DRIVER=local
 API_PUBLIC_URL=http://localhost:4000
@@ -243,7 +243,7 @@ Required AWS setup:
 
 - S3 bucket for proof uploads
 - IAM permissions for `s3:PutObject`, `s3:GetObject`, and `bedrock:InvokeModel`
-- Bedrock model access enabled for Claude 3.5 Sonnet
+- Bedrock model access enabled for Claude 4.6 Sonnet
 - AWS credentials configured through environment variables or platform secrets
 
 More detail: [Deployment Guide](./docs/DEPLOYMENT.md)
