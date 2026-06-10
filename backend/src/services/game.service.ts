@@ -76,6 +76,13 @@ export async function getPendingTask(sessionId: string) {
   });
 }
 
+export async function getSessionTaskHistory(sessionId: string) {
+  return prisma.assignedTask.findMany({
+    where: { gameSessionId: sessionId },
+    orderBy: { createdAt: "desc" }
+  });
+}
+
 export async function completePendingTask(input: {
   userId: string;
   sessionId: string;
