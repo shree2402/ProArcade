@@ -4,7 +4,7 @@ import { GameSessionStatus } from "@prisma/client";
 import { requireAuth } from "../middleware/auth.js";
 import { gameLimiter, uploadLimiter } from "../middleware/rateLimit.js";
 import { AppError, asyncHandler } from "../lib/errors.js";
-import { getOrCreateActiveSession, getPendingTask, rollGameDice, completePendingTask } from "../services/game.service.js";
+import { getOrCreateActiveSession, getPendingTask, rollGameDice, completePendingTask, getSessionTaskHistory } from "../services/game.service.js";
 import { uploadProofToS3 } from "../services/s3.service.js";
 import { verifyProofWithBedrock } from "../services/bedrock.service.js";
 import { prisma } from "../lib/prisma.js";
@@ -31,9 +31,11 @@ gameRouter.post(
   asyncHandler(async (req, res) => {
     const session = await getOrCreateActiveSession(req.user!.id);
     const pendingTask = session.status === GameSessionStatus.ACTIVE ? null : await getPendingTask(session.id);
+    const assignedTasks = await getSessionTaskHistory(session.id);
     res.status(201).json({
       session: toGameSessionDto(session),
       pendingTask: toAssignedTaskDto(pendingTask),
+      assignedTasks: assignedTasks.map(toAssignedTaskDto).filter(Boolean),
       board: { ladders, snakes, effects: tileEffects, winTile: WIN_TILE }
     });
   })
@@ -44,6 +46,7 @@ gameRouter.get(
   asyncHandler(async (req, res) => {
     const session = await getOrCreateActiveSession(req.user!.id);
     const pendingTask = session.status === GameSessionStatus.ACTIVE ? null : await getPendingTask(session.id);
+    const assignedTasks = await getSessionTaskHistory(session.id);
     const gallery = await prisma.mediaGallery.findMany({
       where: { userId: req.user!.id },
       orderBy: { uploadedAt: "asc" }
@@ -52,6 +55,7 @@ gameRouter.get(
     res.json({
       session: toGameSessionDto(session),
       pendingTask: toAssignedTaskDto(pendingTask),
+      assignedTasks: assignedTasks.map(toAssignedTaskDto).filter(Boolean),
       gallery: gallery.map(toMediaGalleryDto),
       board: { ladders, snakes, effects: tileEffects, winTile: WIN_TILE },
       victory: session.currentTile >= WIN_TILE
@@ -74,6 +78,7 @@ gameRouter.post(
       effect: result.effect,
       session: toGameSessionDto(result.session),
       assignedTask: toAssignedTaskDto(result.assignedTask),
+      assignedTasks: (await getSessionTaskHistory(result.session.id)).map(toAssignedTaskDto).filter(Boolean),
       gallery: gallery.map(toMediaGalleryDto),
       victory: result.finalTile >= WIN_TILE
     });
