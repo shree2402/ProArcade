@@ -9,6 +9,7 @@ type RollResponse = {
   effect: TileEffect | null;
   session: GameSession;
   assignedTask: AssignedTask | null;
+  assignedTasks: AssignedTask[];
   gallery: GalleryItem[];
   victory: boolean;
 };
@@ -63,6 +64,7 @@ export function useGame() {
           ...current,
           session: data.session,
           pendingTask: data.assignedTask,
+          assignedTasks: data.assignedTasks,
           gallery: data.victory ? data.gallery : current.gallery,
           victory: data.victory
         };
