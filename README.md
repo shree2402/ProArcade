@@ -32,7 +32,7 @@ Procrastination is often a feedback-loop problem. Productivity Arcade reframes t
 - Board locking while a task is pending
 - Image proof upload flow
 - AWS S3 storage support
-- Amazon Bedrock Claude 3.5 Sonnet verification support
+- Amazon Bedrock Claude 4.6 Sonnet verification support
 - Local development storage and local verification mode
 - PostgreSQL persistence through Prisma ORM
 - Account gallery for verified proof images
