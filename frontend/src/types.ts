@@ -55,6 +55,7 @@ export type GalleryItem = {
 export type GameState = {
   session: GameSession;
   pendingTask: AssignedTask | null;
+  assignedTasks: AssignedTask[];
   gallery: GalleryItem[];
   board: {
     ladders: TileEffect[];
