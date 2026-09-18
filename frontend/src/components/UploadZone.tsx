@@ -31,7 +31,7 @@ export function UploadZone({
       <label className="flex cursor-pointer flex-col items-center justify-center rounded-lg bg-slate-950/40 p-5 text-center transition hover:bg-slate-900/70">
         <UploadCloud className="mb-3 text-arcade-cyan" size={34} />
         <span className="font-bold">Drop proof image or browse</span>
-        <span className="mt-1 text-xs text-slate-400">JPEG, PNG, or WebP · verified by Claude 3.5 Sonnet</span>
+        <span className="mt-1 text-xs text-slate-400">JPEG, PNG, or WebP · verified by Claude 4.6 Sonnet</span>
         <input
           className="hidden"
           type="file"
