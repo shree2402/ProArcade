@@ -11,7 +11,7 @@ flowchart TD
   Backend --> Prisma["Prisma ORM"]
   Prisma --> Postgres["PostgreSQL"]
   Backend --> Storage["AWS S3 or Local Upload Storage"]
-  Backend --> AI["Amazon Bedrock Claude 3.5 Sonnet or Local Verification"]
+  Backend --> AI["Amazon Bedrock Claude 4.6 Sonnet or Local Verification"]
   Storage --> Gallery["MediaGallery Records"]
   AI --> Unlock["Unlock Game Session"]
 ```
