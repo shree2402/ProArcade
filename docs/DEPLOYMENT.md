@@ -6,7 +6,7 @@ Recommended production deployment:
 - Backend: Render Web Service
 - Database: Render PostgreSQL, Neon, Supabase, or AWS RDS
 - Media: AWS S3
-- AI: Amazon Bedrock Claude 3.5 Sonnet
+- AI: Amazon Bedrock Claude 4.6 Sonnet
 
 ## Frontend Deployment: Vercel
 
@@ -122,7 +122,7 @@ STORAGE_DRIVER=s3
 1. Open AWS Console.
 2. Go to Amazon Bedrock.
 3. Open Model Access.
-4. Enable Anthropic Claude 3.5 Sonnet.
+4. Enable Anthropic Claude 4.6 Sonnet.
 5. Ensure the backend IAM principal can invoke Bedrock:
 
 ```json
@@ -137,7 +137,7 @@ STORAGE_DRIVER=s3
 
 ```bash
 VERIFICATION_DRIVER=bedrock
-BEDROCK_MODEL_ID=anthropic.claude-3-5-sonnet-20240620-v1:0
+BEDROCK_MODEL_ID=anthropic.claude-4-6-sonnet-20240620-v1:0
 ```
 
 ## Secrets Management
