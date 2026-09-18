@@ -86,10 +86,10 @@ AWS_S3_BUCKET=your-unique-bucket-name
 
 ### `BEDROCK_MODEL_ID`
 
-Bedrock model id for Claude 3.5 Sonnet.
+Bedrock model id for Claude 4.6 Sonnet.
 
 ```bash
-BEDROCK_MODEL_ID=anthropic.claude-3-5-sonnet-20240620-v1:0
+BEDROCK_MODEL_ID=anthropic.claude-4-6-sonnet-20240620-v1:0
 ```
 
 ### `STORAGE_DRIVER`
